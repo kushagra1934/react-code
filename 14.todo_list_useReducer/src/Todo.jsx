@@ -1,6 +1,9 @@
 import React from "react";
+import { useContext } from "react";
+import { TodosContext } from "./contexts/TodosProvider";
 
-function Todo({ completed, id, title, dispatch }) {
+function Todo({ completed, id, title }) {
+  const {dispatch}=useContext(TodosContext)
   const handleDelete = () => {
     console.log("handle delete called");
     dispatch({ type: "DELETE_TODO",payload:{id:id}});

@@ -1,6 +1,8 @@
 import { useState } from "react";
-
-function AddTodoForm({dispatch}) {
+import { useContext } from "react";
+import { TodosContext } from "./contexts/TodosProvider";
+function AddTodoForm() {
+  const {dispatch}=useContext(TodosContext)
   const [title, setTitle] = useState("");
 
   function handleSubmit(e) {

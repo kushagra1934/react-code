@@ -1,11 +1,13 @@
 import React from "react";
 import Todo from "./Todo";
-
-function Todos({ todos, dispatch }) {
+import { useContext } from "react";
+import { TodosContext } from "./contexts/TodosProvider";
+function Todos() {
+  const { todos} = useContext(TodosContext);
   return (
     <div>
       {todos.map((todo) => {
-        return <Todo {...todo} dispatch={dispatch} key={todo.id} />;
+        return <Todo {...todo} key={todo.id} />;
       })}
     </div>
   );
