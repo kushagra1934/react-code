@@ -1,17 +1,31 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import Modal from "./UI/Modal";
+import Cart from "./Cart";
 
 function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isModalOpen]);
   return (
     <header>
       <nav>
         <h1 className="logo">Shopping Cart</h1>
-        <button>Show Cart</button>
+        <button onClick={() => setIsModalOpen(true)}>Show Cart</button>
       </nav>
-      <Modal>
-        <h1>Modal heading</h1>
-        <p>Modal content</p>
-      </Modal>
+      {isModalOpen && (
+        <Modal closeModal={closeModal}>
+          <Cart />
+        </Modal>
+      )}
     </header>
   );
 }
